@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: igcastil <igcastil@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: gtaza-ca <gtaza-ca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 18:41:03 by gtaza-ca          #+#    #+#             */
-/*   Updated: 2024/07/18 12:51:11 by igcastil         ###   ########.fr       */
+/*   Updated: 2024/07/18 21:50:06 by gtaza-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ static bool	ft_get_dir_path(t_read_input *in, t_cmd *cmd, char **new_dir)
 			{
 				*new_dir = ft_join_strs(pths[i], "/", cmd->argv_for_execve[1]);
 				if (*new_dir == NULL)
-					return (ft_free_split(pths), mini_program_error(in), false);
+					return (free_matrix(pths), mini_program_error(in), false);
 				if (access(*new_dir, X_OK) == 0)
-					return (ft_free_split(pths), true);
+					return (free_matrix(pths), true);
 				free(*new_dir);
 				i++;
 			}
@@ -87,13 +87,13 @@ static int	cd_loop_chdir(t_read_input *in, t_cmd *cmd, char *new_dir)
 	{
 		if (chdir(dirs[i]) < 0)
 		{
-			ft_free_split(dirs);
+			free_matrix(dirs);
 			free(new_dir);
 			return (mini_errno_error(1, S_CD, cmd->argv_for_execve[1]), ERROR);
 		}
 		i++;
 	}
-	ft_free_split(dirs);
+	free_matrix(dirs);
 	cd_update_vars(in, new_dir);
 	return (OK);
 }

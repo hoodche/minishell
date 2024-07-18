@@ -6,7 +6,7 @@
 /*   By: gtaza-ca <gtaza-ca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 11:29:28 by igcastil          #+#    #+#             */
-/*   Updated: 2024/07/14 20:22:36 by gtaza-ca         ###   ########.fr       */
+/*   Updated: 2024/07/18 21:50:06 by gtaza-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,6 @@ void	error_execve(t_read_input *in, t_cmd *cmd, char **envs)
 		write(2, CMD_NOT_FOUND, ft_strlen(CMD_NOT_FOUND));
 	write(2, "\n", 1);
 	g_status = 127;
-	ft_free_split(envs);
+	free_matrix(envs);
 	mini_destroy_and_exit(in);
 }

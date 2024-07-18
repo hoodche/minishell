@@ -6,20 +6,22 @@
 #    By: gtaza-ca <gtaza-ca@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/24 10:30:44 by igcastil          #+#    #+#              #
-#    Updated: 2024/07/18 21:19:36 by gtaza-ca         ###   ########.fr        #
+#    Updated: 2024/07/18 21:57:03 by gtaza-ca         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 CC = gcc
 CCFLAGS = -Wall -Wextra -Werror
-MINISHELL_SRC = children.c debug.c errors.c expansions.c expansions_bis.c\
-				free.c general_utils.c heredoc.c init.c matrix_utils.c\
-				mini_env.c minishell.c parse.c parse_bis.c parse_bis_bis.c \
-				pipes.c prompt.c ptr_recalculation.c quotation.c \
-				redirections.c redirections_bis.c redirections_bis_bis.c\
+MINISHELL_SRC = children.c debug.c errors.c pipes.c prompt.c\
+				free.c utils.c init.c \
+				mini_env.c minishell.c \
+				parser/expansions.c parser/expansions_bis.c\
+				parser/parse.c parser/parse_bis.c parser/parse_bis_bis.c \
+				parser/ptr_recalculation.c parser/quotation.c \
+				parser/redirections.c parser/redirections_bis.c parser/redirections_bis_bis.c\
 				signal.c dlist.c\
-				commands/commands.c commands/selector.c  commands/utils.c \
+				commands/executor.c commands/selector.c  commands/utils.c \
 				redirections/heredoc.c redirections/input.c redirections/heredoc_expansion.c\
 				redirections/output.c builtins/cd.c builtins/cd_extended.c \
 				builtins/echo.c builtins/env.c builtins/exit.c \

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   general_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: igcastil <igcastil@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: gtaza-ca <gtaza-ca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 19:03:56 by gtaza-ca          #+#    #+#             */
-/*   Updated: 2024/07/14 16:13:28 by igcastil         ###   ########.fr       */
+/*   Updated: 2024/07/18 21:49:59 by gtaza-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,21 +46,6 @@ char	*ft_join_strs(char *s1, char *s2, char *s3)
 	return (joined);
 }
 
-void	ft_free_split(char **s)
-{
-	int	i;
-
-	if (s == NULL)
-		return ;
-	i = 0;
-	while (s[i])
-	{
-		free(s[i]);
-		i++;
-	}
-	free(s);
-}
-
 void	mini_close_fds(t_read_input *in, t_cmd *cmd)
 {
 	ft_pipes_close(in);
@@ -69,4 +54,25 @@ void	mini_close_fds(t_read_input *in, t_cmd *cmd)
 	if (cmd->fd_outredir > 2)
 		close(cmd->fd_outredir);
 	mini_heredoc_del_temp(cmd);
+}
+
+/**
+ * @brief	frees all strings inside a str matrix (but not the matrix pointer
+ * 			itself)
+ * @param	char** matrix
+ */
+void	free_matrix(char **matrix)
+{
+	int	i;
+
+	i = 0;
+	if (matrix == NULL)
+		return ;
+	while (matrix[i])
+	{
+		free(matrix[i]);
+		i++;
+	}
+	free(matrix);
+	matrix = NULL;
 }

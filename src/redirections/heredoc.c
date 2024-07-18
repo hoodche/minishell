@@ -6,7 +6,7 @@
 /*   By: gtaza-ca <gtaza-ca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 14:28:34 by gtaza-ca          #+#    #+#             */
-/*   Updated: 2024/07/18 21:03:16 by gtaza-ca         ###   ########.fr       */
+/*   Updated: 2024/07/18 22:01:47 by gtaza-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ int	mini_heredoc_process(t_read_input *in)
 	int	j;
 
 	i = 0;
+	g_status = 0;
 	while (i < in->cmd_count)
 	{
 		j = 0;

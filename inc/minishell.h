@@ -6,7 +6,7 @@
 /*   By: gtaza-ca <gtaza-ca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 17:11:06 by igcastil          #+#    #+#             */
-/*   Updated: 2024/07/18 21:34:26 by gtaza-ca         ###   ########.fr       */
+/*   Updated: 2024/07/18 21:49:14 by gtaza-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -250,7 +250,6 @@ void	ft_dlistclear(t_dlist **l);
 /****************** GENERAL UTILS *******************/
 int		ft_startswith(char *s, char *start);
 char	*ft_join_strs(char *s1, char *s2, char *s3);
-void	ft_free_split(char **s);
 /***************** REDIRECTIONS PS ******************/
 int		mini_heredoc_process(t_read_input *in);
 void	mini_heredoc_del_temp(t_cmd *cmd);

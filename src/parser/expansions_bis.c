@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   expansions_bis.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: igcastil <igcastil@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: gtaza-ca <gtaza-ca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/30 11:37:37 by igcastil          #+#    #+#             */
-/*   Updated: 2024/07/17 12:59:15 by igcastil         ###   ########.fr       */
+/*   Updated: 2024/07/18 21:59:16 by gtaza-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minishell.h"
+#include "../../inc/minishell.h"
 
 /**
  * @brief	once a $ sign was found (pointed by let), followed by "_" or an 

@@ -6,7 +6,7 @@
 /*   By: gtaza-ca <gtaza-ca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 19:40:15 by gtaza-ca          #+#    #+#             */
-/*   Updated: 2024/07/18 21:34:16 by gtaza-ca         ###   ########.fr       */
+/*   Updated: 2024/07/18 21:50:06 by gtaza-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static int	is_executable_wrong_format(t_cmd *cmd)
 	return (false);
 }
 
-//line 73 error mem, ft_free_split(args, in);
+//line 73 error mem, free_matrix(args, in);
 static int	find_cmd_path(t_read_input *in, t_cmd *cmd)
 {
 	char	*cmd_path;

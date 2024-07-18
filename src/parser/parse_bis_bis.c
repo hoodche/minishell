@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parse_bis_bis.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: igcastil <igcastil@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: gtaza-ca <gtaza-ca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 18:53:39 by igcastil          #+#    #+#             */
-/*   Updated: 2024/07/13 22:47:51 by igcastil         ###   ########.fr       */
+/*   Updated: 2024/07/18 21:59:16 by gtaza-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minishell.h"
+#include "../../inc/minishell.h"
 
 /**
  * @brief	if quotes are found while parsing cmd_str, gets the substring before

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ptr_recalculation.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: igcastil <igcastil@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: gtaza-ca <gtaza-ca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 12:59:39 by igcastil          #+#    #+#             */
-/*   Updated: 2024/07/17 13:07:06 by igcastil         ###   ########.fr       */
+/*   Updated: 2024/07/18 21:59:16 by gtaza-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minishell.h"
+#include "../../inc/minishell.h"
 
 /**
  * @brief	fills the cmd->ruling_dbl_quotes array with pointers to cmd->str
