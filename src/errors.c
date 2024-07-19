@@ -6,7 +6,7 @@
 /*   By: gtaza-ca <gtaza-ca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 11:29:28 by igcastil          #+#    #+#             */
-/*   Updated: 2024/07/18 21:50:06 by gtaza-ca         ###   ########.fr       */
+/*   Updated: 2024/07/19 21:32:31 by gtaza-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,19 +78,20 @@ void	mini_formatted_error(int status, char *cmd, char *arg, char *msg)
 
 void	error_execve(t_read_input *in, t_cmd *cmd, char **envs)
 {
-	char	*msg;
+	char	*s_cmd;
 
-	write(2, cmd->argv_for_execve[0], ft_strlen(cmd->argv_for_execve[0]));
-	write(2, ": ", 2);
-	if (ft_strchr(cmd->argv_for_execve[0], '/') != NULL)
+	s_cmd = cmd->argv_for_execve[0];
+	if (!ft_strncmp(s_cmd, "./", 2) && ft_strlen(s_cmd) == 2)
+		mini_formatted_error(126, s_cmd, NULL, ERR_ISDIR);
+	else if (ft_strchr(s_cmd, '/') != NULL)
 	{
-		msg = strerror(errno);
-		write(2, msg, ft_strlen(msg));
+		if (errno == ENOENT)
+			mini_formatted_error(127, s_cmd, NULL, strerror(errno));
+		else
+			mini_formatted_error(126, s_cmd, NULL, strerror(errno));
 	}
 	else
-		write(2, CMD_NOT_FOUND, ft_strlen(CMD_NOT_FOUND));
-	write(2, "\n", 1);
-	g_status = 127;
+		mini_formatted_error(127, s_cmd, NULL, CMD_NOT_FOUND);
 	free_matrix(envs);
 	mini_destroy_and_exit(in);
 }

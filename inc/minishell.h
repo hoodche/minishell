@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: igcastil <igcastil@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: gtaza-ca <gtaza-ca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 17:11:06 by igcastil          #+#    #+#             */
-/*   Updated: 2024/07/19 12:01:21 by igcastil         ###   ########.fr       */
+/*   Updated: 2024/07/19 21:13:16 by gtaza-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ extern int	g_status;
 # define ERR_EXPORT_ID "not a valid identifier"
 # define ERR_EXIT_ARG "numeric argument required"
 # define CMD_NOT_FOUND "command not found"
+# define ERR_ISDIR "Is a directory"
 # define F_TEMP "temp_hdoc_"
 # define HEREDOC_PROMPT "> "
 # define ENV_PATH "PATH"

@@ -6,7 +6,7 @@
 /*   By: gtaza-ca <gtaza-ca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 18:41:03 by gtaza-ca          #+#    #+#             */
-/*   Updated: 2024/07/18 21:50:06 by gtaza-ca         ###   ########.fr       */
+/*   Updated: 2024/07/19 20:51:38 by gtaza-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,10 +111,10 @@ void	mini_cd(t_read_input *in, t_cmd *cmd)
 	else if (cmd_count_args(cmd) == 1)
 	{
 		new_dir = mini_getenv_value("HOME", in->env);
-		if (new_dir && *new_dir != '\0')
+		if (new_dir)
 			new_dir = ft_strdup(new_dir);
-		if (new_dir == NULL || *new_dir == '\0')
-			return ;
+		if (new_dir == NULL)
+			return (mini_formatted_error(1, S_CD, NULL, "HOME not set"));
 	}
 	else
 	{

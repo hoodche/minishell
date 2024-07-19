@@ -6,7 +6,7 @@
 /*   By: gtaza-ca <gtaza-ca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 19:04:28 by igcastil          #+#    #+#             */
-/*   Updated: 2024/07/18 18:01:44 by gtaza-ca         ###   ########.fr       */
+/*   Updated: 2024/07/19 20:51:49 by gtaza-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ void	mini_replace_env(t_dlist *l, char *value, int status)
 {
 	if (l->status == CHANGED_UNSET)
 		return ;
-	free(l->value);
+	if (l->value)
+		free(l->value);
 	l->value = ft_strdup(value);
 	l->status = status;
 }
