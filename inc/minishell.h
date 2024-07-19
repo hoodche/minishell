@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gtaza-ca <gtaza-ca@student.42.fr>          +#+  +:+       +#+        */
+/*   By: igcastil <igcastil@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 17:11:06 by igcastil          #+#    #+#             */
-/*   Updated: 2024/07/18 21:49:14 by gtaza-ca         ###   ########.fr       */
+/*   Updated: 2024/07/19 12:01:21 by igcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 **______________________________________________________________________________
 */
 # include "../libft/libft.h"
-# include "../libft/get_next_line.h"
 # include <stdio.h>				//printf 
 # include <stdlib.h>			//malloc, free
 # include <unistd.h>			//getcwd, write, execve, pipe, dup, STDIN_FILENO

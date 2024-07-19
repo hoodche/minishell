@@ -6,7 +6,7 @@
 #    By: igcastil <igcastil@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/07 11:29:00 by igcastil          #+#    #+#              #
-#    Updated: 2024/07/09 16:18:07 by igcastil         ###   ########.fr        #
+#    Updated: 2024/07/19 12:00:41 by igcastil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,6 @@ SRCS =	ft_atoi.c  ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c ft_isascii.c\
 		ft_putstr_fd.c ft_split.c ft_strchr.c ft_strdup.c ft_striteri.c ft_strjoin.c\
 		ft_strlcat.c ft_strlcpy.c ft_strlen.c ft_strmapi.c ft_strncmp.c ft_strnstr.c\
 		ft_strrchr.c ft_strtrim.c ft_substr.c ft_tolower.c ft_toupper.c\
-		get_next_line.c get_next_line_bonus.c get_next_line_utils.c get_next_line_utils_bonus.c
 
 OBJ = $(SRCS:.c=.o)
 
