@@ -6,7 +6,7 @@
 /*   By: gtaza-ca <gtaza-ca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 19:40:15 by gtaza-ca          #+#    #+#             */
-/*   Updated: 2024/07/20 16:44:46 by gtaza-ca         ###   ########.fr       */
+/*   Updated: 2024/07/20 16:49:13 by gtaza-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,6 @@ void	ft_cmd_exec(t_read_input *in, t_cmd *cmd, int write_pipe)
 	restore_fds(copy[1], restore[1]);
 	if (exit)
 		mini_destroy_and_exit(in);
-	else if (exit  == false && is_builtin == NOT_BUILTIN)
+	else if (exit == false && is_builtin == NOT_BUILTIN)
 		error_execve(in, cmd);
 }

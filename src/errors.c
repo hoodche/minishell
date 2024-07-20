@@ -6,7 +6,7 @@
 /*   By: gtaza-ca <gtaza-ca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 11:29:28 by igcastil          #+#    #+#             */
-/*   Updated: 2024/07/20 16:44:57 by gtaza-ca         ###   ########.fr       */
+/*   Updated: 2024/07/20 16:49:04 by gtaza-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,5 @@ void	error_execve(t_read_input *in, t_cmd *cmd)
 	}
 	else
 		mini_formatted_error(127, s_cmd, NULL, CMD_NOT_FOUND);
-	
 	mini_destroy_and_exit(in);
 }
