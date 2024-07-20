@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   commands.c                                         :+:      :+:    :+:   */
+/*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gtaza-ca <gtaza-ca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 19:40:15 by gtaza-ca          #+#    #+#             */
-/*   Updated: 2024/07/18 21:50:06 by gtaza-ca         ###   ########.fr       */
+/*   Updated: 2024/07/20 16:44:46 by gtaza-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static int	find_cmd_path(t_read_input *in, t_cmd *cmd)
 		|| ft_startswith(cmd->argv_for_execve[0], "./") == true)
 		return (OK);
 	i = 0;
-	if (in->cmd_paths == NULL)
+	if (in->cmd_paths == NULL || cmd->argv_for_execve[0] == NULL)
 		return (ERROR);
 	while (in->cmd_paths[i])
 	{
@@ -65,18 +65,21 @@ static int	find_cmd_path(t_read_input *in, t_cmd *cmd)
 	return (ERROR);
 }
 
-static void	execve_cmd_process(t_read_input *in, t_cmd *cmd)
+static int	execve_cmd_process(t_read_input *in, t_cmd *cmd)
 {
 	char	**envs;
 	int		is_exe_wrong;
 
 	is_exe_wrong = false;
+	if (cmd->argv_for_execve[0] == NULL)
+		return (g_status = 0, true);
 	if (find_cmd_path(in, cmd) == ERROR)
 		is_exe_wrong = is_executable_wrong_format(cmd);
 	envs = makes_env_matrix_from_env_list(in->env);
 	if (is_exe_wrong == false)
 		execve(cmd->argv_for_execve[0], cmd->argv_for_execve, envs);
-	error_execve(in, cmd, envs);
+	free_matrix(envs);
+	return (false);
 }
 
 static void	restore_fds(int copied_fd, int to_restore_fd)
@@ -104,10 +107,13 @@ void	ft_cmd_exec(t_read_input *in, t_cmd *cmd, int write_pipe)
 	mini_close_fds(in, cmd);
 	is_builtin = cmd_is_builtin(cmd);
 	if (is_builtin == NOT_BUILTIN)
-		execve_cmd_process(in, cmd);
-	exit = mini_builtin_process(in, cmd, is_builtin);
+		exit = execve_cmd_process(in, cmd);
+	else
+		exit = mini_builtin_process(in, cmd, is_builtin);
 	restore_fds(copy[0], restore[0]);
 	restore_fds(copy[1], restore[1]);
 	if (exit)
 		mini_destroy_and_exit(in);
+	else if (exit  == false && is_builtin == NOT_BUILTIN)
+		error_execve(in, cmd);
 }

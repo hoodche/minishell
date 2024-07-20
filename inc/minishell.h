@@ -6,7 +6,7 @@
 /*   By: gtaza-ca <gtaza-ca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 17:11:06 by igcastil          #+#    #+#             */
-/*   Updated: 2024/07/19 21:13:16 by gtaza-ca         ###   ########.fr       */
+/*   Updated: 2024/07/20 16:44:52 by gtaza-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -293,5 +293,5 @@ void	mini_destroy_and_exit(t_read_input *in);
 void	mini_errno_error(int status, char *cmd, char *arg);
 void	mini_program_error(t_read_input *in);
 void	mini_formatted_error(int status, char *cmd, char *arg, char *msg);
-void	error_execve(t_read_input *in, t_cmd *cmd, char **envs);
+void	error_execve(t_read_input *in, t_cmd *cmd);
 #endif

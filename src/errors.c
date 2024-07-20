@@ -6,7 +6,7 @@
 /*   By: gtaza-ca <gtaza-ca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 11:29:28 by igcastil          #+#    #+#             */
-/*   Updated: 2024/07/19 21:32:31 by gtaza-ca         ###   ########.fr       */
+/*   Updated: 2024/07/20 16:44:57 by gtaza-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	mini_formatted_error(int status, char *cmd, char *arg, char *msg)
 	close(copy_fd);
 }
 
-void	error_execve(t_read_input *in, t_cmd *cmd, char **envs)
+void	error_execve(t_read_input *in, t_cmd *cmd)
 {
 	char	*s_cmd;
 
@@ -92,6 +92,6 @@ void	error_execve(t_read_input *in, t_cmd *cmd, char **envs)
 	}
 	else
 		mini_formatted_error(127, s_cmd, NULL, CMD_NOT_FOUND);
-	free_matrix(envs);
+	
 	mini_destroy_and_exit(in);
 }

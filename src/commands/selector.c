@@ -6,7 +6,7 @@
 /*   By: gtaza-ca <gtaza-ca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 19:05:33 by gtaza-ca          #+#    #+#             */
-/*   Updated: 2024/07/18 21:19:05 by gtaza-ca         ###   ########.fr       */
+/*   Updated: 2024/07/20 16:30:28 by gtaza-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,6 @@ static void	single_execution(t_read_input *in)
 {
 	int	is_builtin;
 
-	if (in->cmds[0].argv_for_execve[0] == NULL)
-	{
-		mini_heredoc_del_temp(&in->cmds[0]);
-		g_status = 0;
-		return ;
-	}
 	is_builtin = cmd_is_builtin(&in->cmds[0]);
 	if (is_builtin == IS_EXPORT || is_builtin == IS_UNSET
 		|| is_builtin == IS_EXIT || is_builtin == IS_CD)

@@ -6,7 +6,7 @@
 /*   By: gtaza-ca <gtaza-ca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 15:21:59 by igcastil          #+#    #+#             */
-/*   Updated: 2024/07/18 21:59:16 by gtaza-ca         ###   ########.fr       */
+/*   Updated: 2024/07/20 16:11:33 by gtaza-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,7 +178,7 @@ int	ext_red_out(t_cmd *cmd, char *aux, int j)
 	while (aux >= cmd->str && ft_isdigit(*aux))
 		aux--;
 	cmd->redir[j].fd = ft_atoi(++aux);
-	if (*(cmd->redirec_ptr[j] - 1) < '0' || *(cmd->redirec_ptr[j] - 1) > '9')
+	if (cmd->redirec_ptr[j] == cmd->str || *(cmd->redirec_ptr[j] - 1) < '0' || *(cmd->redirec_ptr[j] - 1) > '9')
 		cmd->redir[j].fd = 1;
 	st_red_sbstr = aux;
 	aux = cmd->redirec_ptr[j] + 1;

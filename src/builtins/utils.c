@@ -6,7 +6,7 @@
 /*   By: gtaza-ca <gtaza-ca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 19:40:43 by gtaza-ca          #+#    #+#             */
-/*   Updated: 2024/07/18 21:37:47 by gtaza-ca         ###   ########.fr       */
+/*   Updated: 2024/07/20 16:17:15 by gtaza-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,29 @@
 
 int	cmd_is_builtin(t_cmd *cmd)
 {
-	size_t	len_cmd;
+	size_t	len;
 
-	len_cmd = ft_strlen(cmd->argv_for_execve[0]);
-	if (!ft_strncmp(cmd->argv_for_execve[0], S_ECHO, ft_strlen(S_ECHO))
-		&& len_cmd == ft_strlen(S_ECHO))
+	len = ft_strlen(cmd->argv_for_execve[0]);
+	if (len == ft_strlen(S_ECHO)
+		&& !ft_strncmp(cmd->argv_for_execve[0], S_ECHO, ft_strlen(S_ECHO)))
 		return (IS_ECHO);
-	else if (!ft_strncmp(cmd->argv_for_execve[0], S_CD, ft_strlen(S_CD))
-		&& len_cmd == ft_strlen(S_CD))
+	else if (len == ft_strlen(S_CD)
+		&& !ft_strncmp(cmd->argv_for_execve[0], S_CD, ft_strlen(S_CD)))
 		return (IS_CD);
-	else if (!ft_strncmp(cmd->argv_for_execve[0], S_PWD, ft_strlen(S_PWD))
-		&& len_cmd == ft_strlen(S_PWD))
+	else if (len == ft_strlen(S_PWD)
+		&& !ft_strncmp(cmd->argv_for_execve[0], S_PWD, ft_strlen(S_PWD)))
 		return (IS_PWD);
-	else if (!ft_strncmp(cmd->argv_for_execve[0], S_EXPORT, ft_strlen(S_EXPORT))
-		&& len_cmd == ft_strlen(S_EXPORT))
+	else if (len == ft_strlen(S_EXPORT)
+		&& !ft_strncmp(cmd->argv_for_execve[0], S_EXPORT, ft_strlen(S_EXPORT)))
 		return (IS_EXPORT);
-	else if (!ft_strncmp(cmd->argv_for_execve[0], S_UNSET, ft_strlen(S_UNSET))
-		&& len_cmd == ft_strlen(S_UNSET))
+	else if (len == ft_strlen(S_UNSET)
+		&& !ft_strncmp(cmd->argv_for_execve[0], S_UNSET, ft_strlen(S_UNSET)))
 		return (IS_UNSET);
-	else if (!ft_strncmp(cmd->argv_for_execve[0], S_ENV, ft_strlen(S_ENV))
-		&& len_cmd == ft_strlen(S_ENV))
+	else if (len == ft_strlen(S_ENV)
+		&& !ft_strncmp(cmd->argv_for_execve[0], S_ENV, ft_strlen(S_ENV)))
 		return (IS_ENV);
-	else if (!ft_strncmp(cmd->argv_for_execve[0], S_EXIT, ft_strlen(S_EXIT))
-		&& len_cmd == ft_strlen(S_EXIT))
+	else if (len == ft_strlen(S_EXIT)
+		&& !ft_strncmp(cmd->argv_for_execve[0], S_EXIT, ft_strlen(S_EXIT)))
 		return (IS_EXIT);
 	return (NOT_BUILTIN);
 }
