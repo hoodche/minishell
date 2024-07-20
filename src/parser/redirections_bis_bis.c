@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirections_bis_bis.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gtaza-ca <gtaza-ca@student.42.fr>          +#+  +:+       +#+        */
+/*   By: igcastil <igcastil@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/07 17:41:19 by igcastil          #+#    #+#             */
-/*   Updated: 2024/07/18 21:59:16 by gtaza-ca         ###   ########.fr       */
+/*   Updated: 2024/07/20 23:54:15 by igcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,14 @@ void	init_index_quotes_counters(int *si, int *di)
  */
 int	is_in_heredoc_delimeter(t_cmd *cmd, char *let)
 {
-	while ((*let != ' ' && *let != '\t' && *let != '<')
+	while ((*let != ' ' && *let != '\t' && *let != '<' && let > cmd->str)
 		|| is_quoted_in_cmd(cmd, let))
 		let--;
 	if (*let == '<' && *(let - 1) == '<')
 		return (1);
 	else
 	{
-		while (*let && (*let == ' ' || *let == '\t'))
+		while (*let && (*let == ' ' || *let == '\t') && let > cmd->str)
 			let--;
 		if (*let == '<' && *(let - 1) == '<')
 			return (1);
