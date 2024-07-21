@@ -6,7 +6,7 @@
 /*   By: gtaza-ca <gtaza-ca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 16:31:54 by gtaza-ca          #+#    #+#             */
-/*   Updated: 2024/07/21 15:08:02 by gtaza-ca         ###   ########.fr       */
+/*   Updated: 2024/07/21 15:15:09 by gtaza-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,34 +74,4 @@ static char	*check_pwd_empty(char *pwd)
 		return (pwd);
 	}
 	return (pwd);
-}
-
-//line 72, 76 and 85 error mem, exit prog
-char	*cd_get_abspath(t_read_input *in, char *new_dir)
-{
-	char	*pwd;
-	char	**dirs;
-	int		i;
-
-	dirs = ft_split(new_dir, '/');
-	if (dirs == NULL)
-		return (NULL);
-	i = 0;
-	pwd = get_current_pwd(in);
-	if (pwd == NULL)
-		return (NULL);
-	while (dirs[i])
-	{
-		if (ft_strncmp(dirs[i], "..", 2) == 0)
-			pwd = delete_last_path(pwd);
-		else if (ft_strncmp(dirs[i], ".", 1) && ft_strncmp(dirs[i], "..", 2))
-		{
-			pwd = add_path_to_pwd(pwd, dirs[i]);
-			if (pwd == NULL)
-				return (free_matrix(dirs), NULL);
-		}
-		i++;
-	}
-	pwd = check_pwd_empty(pwd);
-	return (free_matrix(dirs), pwd);
 }

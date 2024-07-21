@@ -6,7 +6,7 @@
 /*   By: gtaza-ca <gtaza-ca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 19:40:15 by gtaza-ca          #+#    #+#             */
-/*   Updated: 2024/07/21 14:54:26 by gtaza-ca         ###   ########.fr       */
+/*   Updated: 2024/07/21 15:14:06 by gtaza-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,26 +97,25 @@ static void	restore_fds(int copied_fd, int to_restore_fd)
 void	ft_cmd_exec(t_read_input *in, t_cmd *cmd, int write_pipe)
 {
 	int		copy[2];
-	int		restore[2];
+	int		rest[2];
 	int		is_builtin;
 	int		exit;
 
-	restore[0] = inredir_process(in, cmd, write_pipe - 1, &copy[0]);
-	if (restore[0] == ERROR)
+	rest[0] = inredir_process(in, cmd, write_pipe - 1, &copy[0]);
+	if (rest[0] == ERROR)
 		return (mini_close_fds(in, cmd), find_first_outredir(cmd));
-	restore[1] = outred_process(in, cmd, write_pipe, &copy[1]);
+	rest[1] = outred_process(in, cmd, write_pipe, &copy[1]);
 	mini_close_fds(in, cmd);
-	if (restore[1] == ERROR)
-		return (restore_fds(copy[0], restore[0]),
-			restore_fds(copy[1], restore[1]));
+	if (rest[1] == ERROR)
+		return (restore_fds(copy[0], rest[0]), restore_fds(copy[1], rest[1]));
 	is_builtin = cmd_is_builtin(cmd);
 	if (is_builtin == NOT_BUILTIN)
 		exit = execve_cmd_process(in, cmd, copy);
 	else
 	{
 		exit = mini_builtin_process(in, cmd, is_builtin);
-		restore_fds(copy[0], restore[0]);
-		restore_fds(copy[1], restore[1]);
+		restore_fds(copy[0], rest[0]);
+		restore_fds(copy[1], rest[1]);
 	}
 	if (exit)
 		mini_destroy_and_exit(in);
