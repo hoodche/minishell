@@ -6,7 +6,7 @@
 /*   By: gtaza-ca <gtaza-ca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 19:35:37 by gtaza-ca          #+#    #+#             */
-/*   Updated: 2024/07/18 21:17:11 by gtaza-ca         ###   ########.fr       */
+/*   Updated: 2024/07/21 14:51:25 by gtaza-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,26 @@ static int	find_last_outredir(t_cmd *cmd)
 	return (last_out);
 }
 
+void	find_first_outredir(t_cmd *cmd)
+{
+	int	i;
+	int	fd;
+
+	i = 0;
+	while (cmd->redir[i].kind)
+	{
+		if (cmd->redir[i].kind == OUT || cmd->redir[i].kind == APPEND)
+		{
+			if (access(cmd->redir[i].filename, F_OK) == 0
+				&& access(cmd->redir[i].filename, W_OK) == -1)
+				return (mini_errno_error(1, cmd->redir[i].filename, NULL));
+			fd = outredir_open(cmd->redir[i]);
+			close(fd);
+			return ;
+		}
+		i++;
+	}
+}
 //line 90 ft_file_error(cmd->redir[*last_out].filename, data);EXIT PROG
 // line 93 check if valid .fd in redir???
 int	outred_process(t_read_input *in, t_cmd *cmd, int pwrite, int *copy_out)

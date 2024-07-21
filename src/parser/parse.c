@@ -6,7 +6,7 @@
 /*   By: gtaza-ca <gtaza-ca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 12:36:30 by igcastil          #+#    #+#             */
-/*   Updated: 2024/07/18 21:59:16 by gtaza-ca         ###   ########.fr       */
+/*   Updated: 2024/07/21 14:11:01 by gtaza-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ static	int	split_pipeline(t_read_input *input)
 		if (*aux == '|' && !is_quoted_in_input(input, aux))
 		{
 			if (*(aux - 1) == '>')
-				return (mini_perror(CLOBBER), g_status = 127, 0);
+				return (mini_perror(CLOBBER), g_status = 2, 0);
 			else if (*(aux + 1) == '|')
 				return (mini_perror(OR), g_status = 127, 0);
 			input->pipes[i++] = aux + 1;

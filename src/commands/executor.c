@@ -6,7 +6,7 @@
 /*   By: gtaza-ca <gtaza-ca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 19:40:15 by gtaza-ca          #+#    #+#             */
-/*   Updated: 2024/07/20 16:49:13 by gtaza-ca         ###   ########.fr       */
+/*   Updated: 2024/07/21 14:54:26 by gtaza-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,16 @@ static int	find_cmd_path(t_read_input *in, t_cmd *cmd)
 	return (ERROR);
 }
 
-static int	execve_cmd_process(t_read_input *in, t_cmd *cmd)
+static int	execve_cmd_process(t_read_input *in, t_cmd *cmd, int *copied_fd)
 {
 	char	**envs;
 	int		is_exe_wrong;
 
 	is_exe_wrong = false;
+	if (copied_fd[0] > ERROR)
+		close(copied_fd[0]);
+	if (copied_fd[1] > ERROR)
+		close(copied_fd[1]);
 	if (cmd->argv_for_execve[0] == NULL)
 		return (g_status = 0, true);
 	if (find_cmd_path(in, cmd) == ERROR)
@@ -84,11 +88,10 @@ static int	execve_cmd_process(t_read_input *in, t_cmd *cmd)
 
 static void	restore_fds(int copied_fd, int to_restore_fd)
 {
-	if (copied_fd > ERROR)
-	{
+	if (copied_fd > ERROR && to_restore_fd > ERROR)
 		dup2(copied_fd, to_restore_fd);
+	if (copied_fd > ERROR)
 		close(copied_fd);
-	}
 }
 
 void	ft_cmd_exec(t_read_input *in, t_cmd *cmd, int write_pipe)
@@ -100,18 +103,21 @@ void	ft_cmd_exec(t_read_input *in, t_cmd *cmd, int write_pipe)
 
 	restore[0] = inredir_process(in, cmd, write_pipe - 1, &copy[0]);
 	if (restore[0] == ERROR)
-		return ;
+		return (mini_close_fds(in, cmd), find_first_outredir(cmd));
 	restore[1] = outred_process(in, cmd, write_pipe, &copy[1]);
-	if (restore[1] == ERROR)
-		return ;
 	mini_close_fds(in, cmd);
+	if (restore[1] == ERROR)
+		return (restore_fds(copy[0], restore[0]),
+			restore_fds(copy[1], restore[1]));
 	is_builtin = cmd_is_builtin(cmd);
 	if (is_builtin == NOT_BUILTIN)
-		exit = execve_cmd_process(in, cmd);
+		exit = execve_cmd_process(in, cmd, copy);
 	else
+	{
 		exit = mini_builtin_process(in, cmd, is_builtin);
-	restore_fds(copy[0], restore[0]);
-	restore_fds(copy[1], restore[1]);
+		restore_fds(copy[0], restore[0]);
+		restore_fds(copy[1], restore[1]);
+	}
 	if (exit)
 		mini_destroy_and_exit(in);
 	else if (exit == false && is_builtin == NOT_BUILTIN)

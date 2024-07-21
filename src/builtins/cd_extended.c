@@ -6,7 +6,7 @@
 /*   By: gtaza-ca <gtaza-ca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 16:31:54 by gtaza-ca          #+#    #+#             */
-/*   Updated: 2024/07/18 21:50:06 by gtaza-ca         ###   ########.fr       */
+/*   Updated: 2024/07/21 15:08:02 by gtaza-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,11 @@ static char	*add_path_to_pwd(char *pwd, char *dir)
 {
 	char	*temp;
 
+	if (ft_strlen(pwd) == 1 && !ft_strncmp(pwd, "/", 1))
+	{
+		free(pwd);
+		pwd = ft_strdup("");
+	}
 	temp = pwd;
 	pwd = ft_join_strs(pwd, "/", dir);
 	if (pwd == NULL)
@@ -57,6 +62,17 @@ static char	*get_current_pwd(t_read_input *in)
 		pwd = ft_strdup(l->backup);
 	else
 		pwd = ft_strdup(l->value);
+	return (pwd);
+}
+
+static char	*check_pwd_empty(char *pwd)
+{
+	if (ft_strlen(pwd) == 0)
+	{
+		free(pwd);
+		pwd = ft_strdup("/");
+		return (pwd);
+	}
 	return (pwd);
 }
 
@@ -86,5 +102,6 @@ char	*cd_get_abspath(t_read_input *in, char *new_dir)
 		}
 		i++;
 	}
+	pwd = check_pwd_empty(pwd);
 	return (free_matrix(dirs), pwd);
 }

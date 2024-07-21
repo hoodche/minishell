@@ -6,7 +6,7 @@
 /*   By: gtaza-ca <gtaza-ca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 14:28:34 by gtaza-ca          #+#    #+#             */
-/*   Updated: 2024/07/18 22:01:47 by gtaza-ca         ###   ########.fr       */
+/*   Updated: 2024/07/21 13:26:18 by gtaza-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	heredoc_write_temp(t_read_input *in, t_redir *r, int fd)
 
 	line = readline("> ");
 	if (line == NULL)
-		return (g_status = 0, ERROR);
+		return (g_status = 0, OK);
 	while (ft_strncmp(line, r->delimeter, ft_strlen(r->delimeter) + 1) != 0)
 	{
 		if (r->expand_heredoc_content == 0
@@ -33,7 +33,7 @@ static int	heredoc_write_temp(t_read_input *in, t_redir *r, int fd)
 			return (ERROR);
 		line = readline("> ");
 		if (line == NULL)
-			return (g_status = 0, ERROR);
+			return (g_status = 0, OK);
 	}
 	return (g_status = 0, free(line), OK);
 }
@@ -55,12 +55,8 @@ static int	heredoc_readin(t_read_input *in, t_redir *r)
 	if (temp_fd == -1)
 		mini_program_error(in);
 	if (heredoc_write_temp(in, r, temp_fd) == ERROR)
-	{
-		close(temp_fd);
-		return (ERROR);
-	}
-	close(temp_fd);
-	return (OK);
+		return (close(temp_fd), ERROR);
+	return (close(temp_fd), OK);
 }
 
 int	mini_heredoc_process(t_read_input *in)

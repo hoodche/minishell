@@ -6,7 +6,7 @@
 /*   By: gtaza-ca <gtaza-ca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 17:11:06 by igcastil          #+#    #+#             */
-/*   Updated: 2024/07/20 16:44:52 by gtaza-ca         ###   ########.fr       */
+/*   Updated: 2024/07/21 14:51:39 by gtaza-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -256,6 +256,7 @@ void	mini_heredoc_del_temp(t_cmd *cmd);
 int		write_and_expand_heredoc(t_read_input *in, int fd, char *line);
 int		inredir_process(t_read_input *in, t_cmd *cmd, int pread, int *copy_in);
 int		outred_process(t_read_input *in, t_cmd *cmd, int pwrite, int *copy_out);
+void	find_first_outredir(t_cmd *cmd);
 /***************************** PIPES ************************************/
 void	ft_pipes_init(t_read_input *in);
 void	ft_pipes_start(t_read_input *in);
