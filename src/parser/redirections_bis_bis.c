@@ -6,7 +6,7 @@
 /*   By: igcastil <igcastil@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/07 17:41:19 by igcastil          #+#    #+#             */
-/*   Updated: 2024/07/20 23:54:15 by igcastil         ###   ########.fr       */
+/*   Updated: 2024/07/21 03:16:17 by igcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,16 @@ void	init_index_quotes_counters(int *si, int *di)
  */
 int	is_in_heredoc_delimeter(t_cmd *cmd, char *let)
 {
-	while ((*let != ' ' && *let != '\t' && *let != '<' && let > cmd->str)
+	while ((let >= cmd->str && *let != ' ' && *let != '\t' && *let != '<')
 		|| is_quoted_in_cmd(cmd, let))
 		let--;
-	if (*let == '<' && *(let - 1) == '<')
+	if (let >= cmd->str && *let == '<' && *(let - 1) == '<')
 		return (1);
 	else
 	{
-		while (*let && (*let == ' ' || *let == '\t') && let > cmd->str)
+		while (let >= cmd->str && *let && (*let == ' ' || *let == '\t'))
 			let--;
-		if (*let == '<' && *(let - 1) == '<')
+		if (let >= cmd->str && *let == '<' && *(let - 1) == '<')
 			return (1);
 	}
 	return (0);
