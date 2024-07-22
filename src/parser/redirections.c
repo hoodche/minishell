@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirections.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gtaza-ca <gtaza-ca@student.42.fr>          +#+  +:+       +#+        */
+/*   By: igcastil <igcastil@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 15:21:59 by igcastil          #+#    #+#             */
-/*   Updated: 2024/07/20 16:11:33 by gtaza-ca         ###   ########.fr       */
+/*   Updated: 2024/07/22 12:50:03 by igcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
  * @param	int		j index of this redirection in the cmd->redir array 
  * @return	int		0 on error, 1 on success
  */
-int	ext_red_append(t_cmd *cmd, char *aux, int j)
+int	e(t_cmd *cmd, char *aux, int j)
 {
 	char	*st_red_sbstr;
 	char	*end_red_substr;
@@ -162,7 +162,8 @@ int	ext_red_in(t_cmd *cmd, char *aux, int j)
  * 					start_redirec_substring to end_redirec_substring both 
  * 					included) in cmd->str with spaces for further split
  * @param	t_cmd	*pointer to the command struct (with quotes arrays)
- * @param	char	*aux pointer to the first symbol of this redirection (<) in 
+ * @param	char	*aux pointer to the char right before first symbol of this
+ * 					 redirection (<) in 
  * 					cmd->str
  * @param	int		j index of this redirection in the cmd->redir array 
  * @return	int		0 on error, 1 on success
@@ -174,11 +175,11 @@ int	ext_red_out(t_cmd *cmd, char *aux, int j)
 	char	*st_flname;
 
 	cmd->redir[j].kind = OUT;
-	aux--;
 	while (aux >= cmd->str && ft_isdigit(*aux))
 		aux--;
 	cmd->redir[j].fd = ft_atoi(++aux);
-	if (cmd->redirec_ptr[j] == cmd->str || *(cmd->redirec_ptr[j] - 1) < '0' || *(cmd->redirec_ptr[j] - 1) > '9')
+	if (cmd->redirec_ptr[j] == cmd->str || *(cmd->redirec_ptr[j] - 1) < '0'
+		|| *(cmd->redirec_ptr[j] - 1) > '9')
 		cmd->redir[j].fd = 1;
 	st_red_sbstr = aux;
 	aux = cmd->redirec_ptr[j] + 1;
@@ -206,7 +207,7 @@ int	extract_redirs_from_cmds(t_read_input *input)
 {
 	int		i;
 	int		j;
-	char	*aux;
+	char	*a;
 
 	i = -1;
 	while (++i < input->cmd_count)
@@ -214,16 +215,17 @@ int	extract_redirs_from_cmds(t_read_input *input)
 		j = -1;
 		while (input->cmds[i].redirec_ptr[++j])
 		{
-			aux = input->cmds[i].redirec_ptr[j];
-			if (*aux == '>' && *(aux + 1) == '>'
-				&& (!(ext_red_append(&(input->cmds[i]), aux -1, j))))
+			a = input->cmds[i].redirec_ptr[j];
+			if (redirec_sign_errors(a) == 0)
 				return (0);
-			else if (*aux == '<' && *(aux + 1) == '<'
-				&& (!(ext_red_heredoc(&(input->cmds[i]), aux, j))))
+			if (*a == '>' && *(a + 1) == '>' && !e(&(input->cmds[i]), a - 1, j))
 				return (0);
-			else if (*aux == '<' && (!(ext_red_in(&(input->cmds[i]), aux, j))))
+			else if (*a == '<' && *(a + 1) == '<'
+				&& (!(ext_red_heredoc(&(input->cmds[i]), a, j))))
 				return (0);
-			else if (*aux == '>' && (!(ext_red_out(&(input->cmds[i]), aux, j))))
+			else if (*a == '<' && (!(ext_red_in(&(input->cmds[i]), a, j))))
+				return (0);
+			else if (*a == '>' && (!(ext_red_out(&(input->cmds[i]), a - 1, j))))
 				return (0);
 		}
 	}

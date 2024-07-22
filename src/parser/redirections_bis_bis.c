@@ -6,7 +6,7 @@
 /*   By: igcastil <igcastil@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/07 17:41:19 by igcastil          #+#    #+#             */
-/*   Updated: 2024/07/21 03:29:07 by igcastil         ###   ########.fr       */
+/*   Updated: 2024/07/22 12:49:23 by igcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,52 @@ int	is_in_heredoc_delimeter(t_cmd *cmd, char *let)
 			return (1);
 	}
 	return (0);
+}
+
+/**
+ * @brief	parses a comand string,right after a redirection sign (> or <) 
+ * 			that is a whiitespace or tabs checking for errors
+ * @param	char	*aux pointer to twhiitespace or tabs right after a 
+ * 			redirection sign
+ * @return	int 0 on error, 1 on success
+ */
+int	blanks_between_redirections(char *aux)
+{
+	while (*aux == ' ' || *aux == '\t')
+		aux++;
+	if (*aux == '<')
+		return (mini_perror(UNEXPECTED_RED_IN), g_status = 2, 0);
+	else if (*aux == '>')
+		return (mini_perror(UNEXPECTED_RED_OUT), g_status = 2, 0);
+	return (1);
+}
+
+/**
+ * @brief	parses a comand string,right after a redirection sign (> or <) 
+ * 			checking for errors
+ * @param	char	*aux pointer to the redirection sign
+ * @return	int 0 on error, 1 on success
+ */
+int	redirec_sign_errors(char *au)
+{
+	if (*au == '>' && *(au + 1) == '<')
+		return (mini_perror(UNEXPECTED_RED_IN), g_status = 2, 0);
+	if ((*au == '>' || *au == '<') && (*(au + 1) == ' ' || *(au + 1) == '\t'))
+	{
+		if (blanks_between_redirections(au + 1) == 0)
+			return (0);
+	}
+	if (*au == '<' && *(au + 1) == '<' && *(au + 2) == '>')
+		return (mini_perror(UNEXPECTED_RED_OUT), g_status = 2, 0);
+	if (*au == '>' && *(au + 1) == '>' && (*(au + 2) == '<'))
+		return (mini_perror(UNEXPECTED_RED_IN), g_status = 2, 0);
+	if (*au == '>' && *(au + 1) == '>' && (*(au + 2) == '>'))
+		return (mini_perror(UNEXPECTED_RED_OUT), g_status = 2, 0);
+	if (((*au == '<' && *(au + 1) == '<') || (*au == '>' && *(au + 1) == '>'))
+		&& (*(au + 2) == ' ' || *(au + 2) == '\t'))
+	{
+		if (blanks_between_redirections(au + 2) == 0)
+			return (0);
+	}
+	return (1);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gtaza-ca <gtaza-ca@student.42.fr>          +#+  +:+       +#+        */
+/*   By: igcastil <igcastil@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 12:36:30 by igcastil          #+#    #+#             */
-/*   Updated: 2024/07/21 14:11:01 by gtaza-ca         ###   ########.fr       */
+/*   Updated: 2024/07/22 12:05:39 by igcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,29 @@ static	void	set_commands(t_read_input *input)
 }
 
 /**
+ * @brief	parses input string,right after pipe sign (|) checking for errors
+ * @param	t_read_input	*input struct 
+ * @param	char			*aux pointer to the pipe sign
+ * @return	int 0 on error, 1 on success
+ */
+int	pipe_sign_errors(t_read_input *input, char *aux)
+{
+	if (aux >= input->typed && *(aux - 1) == '>')
+		return (mini_perror(CLOBBER), g_status = 2, 0);
+	else if (*(aux + 1) == '|')
+		return (mini_perror(OR), g_status = 127, 0);
+	else if (*(aux + 1) == ' ' || *(aux + 1) == '\t')
+	{
+		aux++;
+		while (*aux == ' ' || *aux == '\t')
+			aux++;
+		if (*aux == '|')
+			return (mini_perror(PIPE_SIGN), g_status = 2, 0);
+	}
+	return (1);
+}
+
+/**
  * @brief	parses input string, fills prompt struct arrays with pointers to 
  * 			redirection signs, to the chars right after a valid | in the input
  * 			string and replaces those '|' with '\0' so that each command can be 
@@ -107,10 +130,8 @@ static	int	split_pipeline(t_read_input *input)
 	{
 		if (*aux == '|' && !is_quoted_in_input(input, aux))
 		{
-			if (*(aux - 1) == '>')
-				return (mini_perror(CLOBBER), g_status = 2, 0);
-			else if (*(aux + 1) == '|')
-				return (mini_perror(OR), g_status = 127, 0);
+			if (pipe_sign_errors(input, aux) == 0)
+				return (0);
 			input->pipes[i++] = aux + 1;
 			*aux = '\0';
 		}

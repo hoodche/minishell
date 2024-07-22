@@ -6,7 +6,7 @@
 /*   By: igcastil <igcastil@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 17:11:06 by igcastil          #+#    #+#             */
-/*   Updated: 2024/07/22 09:58:48 by igcastil         ###   ########.fr       */
+/*   Updated: 2024/07/22 12:49:44 by igcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ extern int	g_status;
 */
 
 # ifndef DEBUG_MODE
-#  define DEBUG_MODE 1
+#  define DEBUG_MODE 0
 # endif
 
 # ifndef PROMPT_SIZE
@@ -116,7 +116,9 @@ typedef enum e_mini_error
 	PIPENDERR = 10,
 	MEM = 11,
 	IS_DIR = 12,
-	NOT_DIR = 13
+	NOT_DIR = 13,
+	UNEXPECTED_RED_IN = 14,
+	UNEXPECTED_RED_OUT = 15
 }	t_mini_error;
 
 typedef enum e_redirection
@@ -255,6 +257,8 @@ int		write_and_expand_heredoc(t_read_input *in, int fd, char *line);
 int		inredir_process(t_read_input *in, t_cmd *cmd, int pread, int *copy_in);
 int		outred_process(t_read_input *in, t_cmd *cmd, int pwrite, int *copy_out);
 void	find_first_outredir(t_cmd *cmd);
+int		redirec_sign_errors(char *au);
+int		blanks_between_redirections(char *aux);
 /***************************** PIPES ************************************/
 void	ft_pipes_init(t_read_input *in);
 void	ft_pipes_start(t_read_input *in);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gtaza-ca <gtaza-ca@student.42.fr>          +#+  +:+       +#+        */
+/*   By: igcastil <igcastil@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 11:29:28 by igcastil          #+#    #+#             */
-/*   Updated: 2024/07/20 16:49:04 by gtaza-ca         ###   ########.fr       */
+/*   Updated: 2024/07/22 11:27:46 by igcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,10 @@ void	mini_perror(t_mini_error err_type)
 		printf("%s near unexpected token `|'\n", ERR_SYNTAX);
 	else if (err_type == UNEXPECTED_NL)
 		printf("%s near unexpected token 'newline'\n", ERR_SYNTAX);
+	else if (err_type == UNEXPECTED_RED_IN)
+		printf("%s near unexpected token `<'\n", ERR_SYNTAX);
+	else if (err_type == UNEXPECTED_RED_OUT)
+		printf("%s near unexpected token `>'\n", ERR_SYNTAX);
 	dup2(copy_fd, STDOUT_FILENO);
 	close(copy_fd);
 }
