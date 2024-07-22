@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd_extended.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gtaza-ca <gtaza-ca@student.42.fr>          +#+  +:+       +#+        */
+/*   By: igcastil <igcastil@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 16:31:54 by gtaza-ca          #+#    #+#             */
-/*   Updated: 2024/07/21 15:15:09 by gtaza-ca         ###   ########.fr       */
+/*   Updated: 2024/07/22 09:57:40 by igcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	cd_print(int used_cdpath, char **s)
 		free(*s);
 }
 
-static char	*delete_last_path(char *pwd)
+char	*delete_last_path(char *pwd)
 {
 	char	*temp;
 
@@ -35,7 +35,7 @@ static char	*delete_last_path(char *pwd)
 }
 
 //line 45 error mem, exit prog
-static char	*add_path_to_pwd(char *pwd, char *dir)
+char	*add_path_to_pwd(char *pwd, char *dir)
 {
 	char	*temp;
 
@@ -52,7 +52,7 @@ static char	*add_path_to_pwd(char *pwd, char *dir)
 	return (pwd);
 }
 
-static char	*get_current_pwd(t_read_input *in)
+char	*get_current_pwd(t_read_input *in)
 {
 	char	*pwd;
 	t_dlist	*l;
@@ -65,7 +65,7 @@ static char	*get_current_pwd(t_read_input *in)
 	return (pwd);
 }
 
-static char	*check_pwd_empty(char *pwd)
+char	*check_pwd_empty(char *pwd)
 {
 	if (ft_strlen(pwd) == 0)
 	{

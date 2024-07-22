@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gtaza-ca <gtaza-ca@student.42.fr>          +#+  +:+       +#+        */
+/*   By: igcastil <igcastil@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 17:11:06 by igcastil          #+#    #+#             */
-/*   Updated: 2024/07/21 14:51:39 by gtaza-ca         ###   ########.fr       */
+/*   Updated: 2024/07/22 09:58:48 by igcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ extern int	g_status;
 */
 
 # ifndef DEBUG_MODE
-#  define DEBUG_MODE 0
+#  define DEBUG_MODE 1
 # endif
 
 # ifndef PROMPT_SIZE
@@ -171,8 +171,6 @@ typedef struct s_cmd
 												//where redirections are
 	t_redir			redir[MAX_REDIRECS];
 	char			*argv_for_execve[MAX_CMD_ARGS];
-	//char			**argv; //use this one instead of argv_for_execve, bc name 
-							//is too long
 	pid_t			pid;
 	int				fd_infile;
 	int				fd_outredir;
@@ -282,6 +280,10 @@ void	mini_echo(t_read_input *in, t_cmd *cmd);
 void	mini_cd(t_read_input *in, t_cmd *cmd);
 char	*cd_get_abspath(t_read_input *in, char *new_dir);
 void	cd_print(int used_cdpath, char **s);
+char	*get_current_pwd(t_read_input *in);
+char	*delete_last_path(char *pwd);
+char	*add_path_to_pwd(char *pwd, char *dir);
+char	*check_pwd_empty(char *pwd);
 void	mini_pwd(t_read_input *in, t_cmd *cmd);
 void	mini_env(t_read_input *in, t_cmd *cmd);
 void	mini_export(t_read_input *in, t_cmd *cmd);
