@@ -6,7 +6,7 @@
 /*   By: igcastil <igcastil@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 19:41:12 by gtaza-ca          #+#    #+#             */
-/*   Updated: 2024/07/18 21:06:51 by igcastil         ###   ########.fr       */
+/*   Updated: 2024/07/22 13:16:27 by igcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	ft_fork_only_child(t_read_input *in)
 		return ;
 	else if (in->cmds[0].pid == 0)
 	{
+		signal(SIGQUIT, SIG_DFL);
 		ft_cmd_exec(in, &in->cmds[0], 0);
 		mini_destroy_and_exit(in);
 	}
@@ -43,6 +44,7 @@ void	ft_fork_children(t_read_input *in)
 		}
 		else if (in->cmds[i].pid == 0)
 		{
+			signal(SIGQUIT, SIG_DFL);
 			ft_cmd_exec(in, &in->cmds[i], i);
 			mini_destroy_and_exit(in);
 		}
@@ -63,7 +65,6 @@ void	ft_wait_children(t_read_input *in)
 	int	status;
 
 	i = 0;
-	signal(SIGQUIT, SIG_DFL);
 	signal(SIGINT, SIG_IGN);
 	while (i < in->cmd_count)
 	{
@@ -71,7 +72,6 @@ void	ft_wait_children(t_read_input *in)
 			return ;
 		i++;
 	}
-	signal(SIGQUIT, SIG_IGN);
 	signal(SIGINT, handle_sigint);
 	if (WIFEXITED(status))
 		g_status = WEXITSTATUS(status);
