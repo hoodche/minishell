@@ -6,7 +6,7 @@
 /*   By: igcastil <igcastil@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 17:11:06 by igcastil          #+#    #+#             */
-/*   Updated: 2024/07/22 12:49:44 by igcastil         ###   ########.fr       */
+/*   Updated: 2024/07/22 16:30:35 by igcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,8 @@ typedef enum e_mini_error
 	IS_DIR = 12,
 	NOT_DIR = 13,
 	UNEXPECTED_RED_IN = 14,
-	UNEXPECTED_RED_OUT = 15
+	UNEXPECTED_RED_OUT = 15,
+	HERE_STRING = 16
 }	t_mini_error;
 
 typedef enum e_redirection

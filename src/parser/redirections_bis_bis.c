@@ -6,7 +6,7 @@
 /*   By: igcastil <igcastil@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/07 17:41:19 by igcastil          #+#    #+#             */
-/*   Updated: 2024/07/22 12:49:23 by igcastil         ###   ########.fr       */
+/*   Updated: 2024/07/22 16:52:55 by igcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,24 @@ int	blanks_between_redirections(char *aux)
 }
 
 /**
+ * @brief	parses a comand string,right after a >>> redirection sign
+ * @param	char	*aux pointer char right after the 3rd redirection sign
+ * @return	0 (always error, since minishell does not accept here strings >>>)
+ */
+int	check_here_string(char *aux)
+{
+	while (*aux == ' ' || *aux == '\t')
+		aux++;
+	if (*aux == '<')
+		return (mini_perror(UNEXPECTED_RED_IN), g_status = 2, 0);
+	else if (*aux == '>')
+		return (mini_perror(UNEXPECTED_RED_OUT), g_status = 2, 0);
+	else if (*aux == 0)
+		return (mini_perror(UNEXPECTED_NL), g_status = 2, 0);
+	else
+		return (mini_perror(HERE_STRING), g_status = 2, 0);
+}
+/**
  * @brief	parses a comand string,right after a redirection sign (> or <) 
  * 			checking for errors
  * @param	char	*aux pointer to the redirection sign
@@ -92,5 +110,7 @@ int	redirec_sign_errors(char *au)
 		if (blanks_between_redirections(au + 2) == 0)
 			return (0);
 	}
+	if (*au == '<' && *(au + 1) == '<' && *(au + 2) == '<')
+		return(check_here_string(au + 3));
 	return (1);
 }
