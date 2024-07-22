@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   pipes.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: igcastil <igcastil@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: gtaza-ca <gtaza-ca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 19:41:33 by gtaza-ca          #+#    #+#             */
-/*   Updated: 2024/07/17 13:13:45 by igcastil         ###   ########.fr       */
+/*   Updated: 2024/07/22 17:20:20 by gtaza-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-//line 22 and 28 ft_standard_error(ERR_MEM, data); exit prog
 void	ft_pipes_init(t_read_input *in)
 {
 	int	i;
@@ -31,7 +30,6 @@ void	ft_pipes_init(t_read_input *in)
 	}
 }
 
-//line 43 ft_standard_error("", data);
 void	ft_pipes_start(t_read_input *in)
 {
 	int	i;

@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: igcastil <igcastil@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: gtaza-ca <gtaza-ca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 18:41:12 by gtaza-ca          #+#    #+#             */
-/*   Updated: 2024/07/18 12:43:11 by igcastil         ###   ########.fr       */
+/*   Updated: 2024/07/22 17:16:32 by gtaza-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-//line 27 error mem, change
 int	echo_flags(t_read_input *in, t_cmd *cmd)
 {
 	size_t	i;

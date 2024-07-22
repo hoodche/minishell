@@ -6,7 +6,7 @@
 /*   By: gtaza-ca <gtaza-ca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 19:35:37 by gtaza-ca          #+#    #+#             */
-/*   Updated: 2024/07/21 15:14:24 by gtaza-ca         ###   ########.fr       */
+/*   Updated: 2024/07/22 17:17:57 by gtaza-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,6 @@ void	find_first_outredir(t_cmd *cmd)
 	}
 }
 
-//line 90 ft_file_error(cmd->redir[*last_out].filename, data);EXIT PROG
-// line 93 check if valid .fd in redir???
 int	outred_process(t_read_input *in, t_cmd *cmd, int pwrite, int *copy_out)
 {
 	int		last_out;

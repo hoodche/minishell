@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirections_bis_bis.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: igcastil <igcastil@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: gtaza-ca <gtaza-ca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/07 17:41:19 by igcastil          #+#    #+#             */
-/*   Updated: 2024/07/22 16:52:55 by igcastil         ###   ########.fr       */
+/*   Updated: 2024/07/22 17:22:10 by gtaza-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ int	check_here_string(char *aux)
 	else
 		return (mini_perror(HERE_STRING), g_status = 2, 0);
 }
+
 /**
  * @brief	parses a comand string,right after a redirection sign (> or <) 
  * 			checking for errors
@@ -111,6 +112,6 @@ int	redirec_sign_errors(char *au)
 			return (0);
 	}
 	if (*au == '<' && *(au + 1) == '<' && *(au + 2) == '<')
-		return(check_here_string(au + 3));
+		return (check_here_string(au + 3));
 	return (1);
 }

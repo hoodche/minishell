@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: igcastil <igcastil@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: gtaza-ca <gtaza-ca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 19:35:37 by gtaza-ca          #+#    #+#             */
-/*   Updated: 2024/07/18 12:59:18 by igcastil         ###   ########.fr       */
+/*   Updated: 2024/07/22 17:17:50 by gtaza-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,6 @@ static int	find_last_inredir(t_cmd *cmd)
 	return (last_in);
 }
 
-//line 73 ft_file_error(data->in, data);
-// line 76 check if valid fd in redir???
 int	inredir_process(t_read_input *in, t_cmd *cmd, int pread, int *copy_in)
 {
 	int		last_in;

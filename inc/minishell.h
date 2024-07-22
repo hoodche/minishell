@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: igcastil <igcastil@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: gtaza-ca <gtaza-ca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 17:11:06 by igcastil          #+#    #+#             */
-/*   Updated: 2024/07/22 16:30:35 by igcastil         ###   ########.fr       */
+/*   Updated: 2024/07/22 17:15:46 by gtaza-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,15 @@
 **______________________________________________________________________________
 */
 # include "../libft/libft.h"
-# include <stdio.h>				//printf 
-# include <stdlib.h>			//malloc, free
-# include <unistd.h>			//getcwd, write, execve, pipe, dup, STDIN_FILENO
-# include <readline/readline.h>	//readline, rl_clear_history, the variable 
-								//extern char *rl_line_buffer;(gcc.. -lreadline)
-# include <readline/history.h>	//add_history
-# include <signal.h>			//signal, SIGINT, SIGQUIT
-# include <asm-generic/ioctls.h> //TIOCSTI
-# include <sys/ioctl.h> //ioctl
-# include <sys/wait.h> //waitpid
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <readline/readline.h>
+# include <readline/history.h>
+# include <signal.h>
+# include <asm-generic/ioctls.h> 
+# include <sys/ioctl.h>
+# include <sys/wait.h>
 # include <fcntl.h>
 # include <stdbool.h>
 # include <sys/stat.h>
@@ -159,7 +158,7 @@ typedef struct s_redir
 	t_redir_kind	kind;
 	int				fd;
 	char			*filename;
-	char			*delimeter; // for heredoc
+	char			*delimeter;
 	int				expand_heredoc_content; //1 if delimeter contained quotes 
 		//($ expansion must NOT be made on heredoc content file), 0 otherwise
 }	t_redir;

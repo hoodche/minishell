@@ -6,13 +6,12 @@
 /*   By: gtaza-ca <gtaza-ca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 18:41:03 by gtaza-ca          #+#    #+#             */
-/*   Updated: 2024/07/21 15:15:14 by gtaza-ca         ###   ########.fr       */
+/*   Updated: 2024/07/22 17:16:15 by gtaza-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-//line 72, 76 and 85 error mem, exit prog
 char	*cd_get_abspath(t_read_input *in, char *new_dir)
 {
 	char	*pwd;
@@ -71,7 +70,6 @@ static bool	ft_get_dir_path(t_read_input *in, t_cmd *cmd, char **new_dir)
 	return (false);
 }
 
-//lines 55 and 61 exit program
 static void	cd_update_vars(t_read_input *in, char *new_dir)
 {
 	char	*oldpwd;
@@ -99,7 +97,6 @@ static void	cd_update_vars(t_read_input *in, char *new_dir)
 	free(pwd);
 }
 
-//lines 79 and 84 exit program
 static int	cd_loop_chdir(t_read_input *in, t_cmd *cmd, char *new_dir)
 {
 	char	**dirs;
@@ -123,9 +120,7 @@ static int	cd_loop_chdir(t_read_input *in, t_cmd *cmd, char *new_dir)
 		}
 		i++;
 	}
-	free_matrix(dirs);
-	cd_update_vars(in, new_dir);
-	return (OK);
+	return (free_matrix(dirs), cd_update_vars(in, new_dir), OK);
 }
 
 void	mini_cd(t_read_input *in, t_cmd *cmd)

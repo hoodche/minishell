@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd_extended.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: igcastil <igcastil@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: gtaza-ca <gtaza-ca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 16:31:54 by gtaza-ca          #+#    #+#             */
-/*   Updated: 2024/07/22 09:57:40 by igcastil         ###   ########.fr       */
+/*   Updated: 2024/07/22 13:59:17 by gtaza-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ char	*delete_last_path(char *pwd)
 	return (pwd);
 }
 
-//line 45 error mem, exit prog
 char	*add_path_to_pwd(char *pwd, char *dir)
 {
 	char	*temp;

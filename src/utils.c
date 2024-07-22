@@ -6,12 +6,12 @@
 /*   By: gtaza-ca <gtaza-ca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 19:03:56 by gtaza-ca          #+#    #+#             */
-/*   Updated: 2024/07/19 20:55:53 by gtaza-ca         ###   ########.fr       */
+/*   Updated: 2024/07/22 17:20:39 by gtaza-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
-//TO-DO: temporal for now
+
 int	ft_startswith(char *s, char *start)
 {
 	size_t	j;

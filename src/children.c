@@ -3,17 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   children.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: igcastil <igcastil@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: gtaza-ca <gtaza-ca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 19:41:12 by gtaza-ca          #+#    #+#             */
-/*   Updated: 2024/07/22 13:16:27 by igcastil         ###   ########.fr       */
+/*   Updated: 2024/07/22 17:19:48 by gtaza-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-//line 20 ft_standard_error("", data);
-//line 23 ft_process_children(data, cmds[i], i);
 void	ft_fork_only_child(t_read_input *in)
 {
 	in->cmds[0].pid = fork();
@@ -27,7 +25,6 @@ void	ft_fork_only_child(t_read_input *in)
 	}
 }
 
-//line 41 ft_standard_error("", data);
 void	ft_fork_children(t_read_input *in)
 {
 	int	i;
@@ -52,11 +49,9 @@ void	ft_fork_children(t_read_input *in)
 	}
 }
 
-// line 60 so that SIgquit works if a child process is running and blocked
-// line 62 so that parent process do not print a new promt
-// line 67 ft_standard_error("", data);
-// line 75 child normal termination
-// line 77 This macro returns a nonzero value if the child process terminated 
+// line 66 so that parent process do not print a new promt
+// line 74 child normal termination
+// line 76 This macro returns a nonzero value if the child process terminated 
 //		because it received a signal that was not handled.
 // line 79  because the child process terminated without printing a new line
 void	ft_wait_children(t_read_input *in)

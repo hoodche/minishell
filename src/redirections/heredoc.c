@@ -6,13 +6,12 @@
 /*   By: gtaza-ca <gtaza-ca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 14:28:34 by gtaza-ca          #+#    #+#             */
-/*   Updated: 2024/07/21 13:26:18 by gtaza-ca         ###   ########.fr       */
+/*   Updated: 2024/07/22 17:17:44 by gtaza-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-//lines 72, 76, 78 and 83 ft_standard_error("", data); exit prog
 static int	heredoc_write_temp(t_read_input *in, t_redir *r, int fd)
 {
 	char	*line;
@@ -38,7 +37,6 @@ static int	heredoc_write_temp(t_read_input *in, t_redir *r, int fd)
 	return (g_status = 0, free(line), OK);
 }
 
-// line 105 exit prog
 static int	heredoc_readin(t_read_input *in, t_redir *r)
 {
 	int		temp_fd;

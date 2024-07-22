@@ -6,14 +6,12 @@
 /*   By: gtaza-ca <gtaza-ca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 19:40:15 by gtaza-ca          #+#    #+#             */
-/*   Updated: 2024/07/21 15:14:06 by gtaza-ca         ###   ########.fr       */
+/*   Updated: 2024/07/22 17:12:51 by gtaza-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-//t_read_input *in FOR ERR
-// line 42exit prog
 static int	is_executable_wrong_format(t_cmd *cmd)
 {
 	DIR				*d;
@@ -36,14 +34,14 @@ static int	is_executable_wrong_format(t_cmd *cmd)
 	return (false);
 }
 
-//line 73 error mem, free_matrix(args, in);
 static int	find_cmd_path(t_read_input *in, t_cmd *cmd)
 {
 	char	*cmd_path;
 	int		i;
 
 	if (ft_startswith(cmd->argv_for_execve[0], "/") == true
-		|| ft_startswith(cmd->argv_for_execve[0], "./") == true)
+		|| ft_startswith(cmd->argv_for_execve[0], "./") == true
+		|| ft_strlen(cmd->argv_for_execve[0]) == 0)
 		return (OK);
 	i = 0;
 	if (in->cmd_paths == NULL || cmd->argv_for_execve[0] == NULL)
