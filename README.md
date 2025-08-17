@@ -44,3 +44,10 @@ The goal of the project is to build a functional command-line interpreter that m
 ## 📺 Demo
 
 ![Demo](demo.gif)
+
+---
+
+## 👤 Authors
+
+ Ignacio Castillo Franco y Grace Taza Castañeda (🐙 Gracy)
+
