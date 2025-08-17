@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gtaza-ca <gtaza-ca@student.42.fr>          +#+  +:+       +#+        */
+/*   By: igcastil <igcastil@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 19:40:43 by gtaza-ca          #+#    #+#             */
-/*   Updated: 2024/07/20 16:17:15 by gtaza-ca         ###   ########.fr       */
+/*   Updated: 2025/08/17 11:05:21 by igcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	cmd_count_args(t_cmd *cmd)
 	int	count;
 
 	count = 0;
-	while (cmd->argv_for_execve && cmd->argv_for_execve[count])
+	while (cmd->argv_for_execve[count])
 		count++;
 	return (count);
 }
