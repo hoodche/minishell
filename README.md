@@ -40,3 +40,7 @@ The goal of the project is to build a functional command-line interpreter that m
 
 - `make` → compiles the project  
 - ./minishel  → executes the minishell 
+
+## 📺 Demo
+
+![Demo](demo.gif)
