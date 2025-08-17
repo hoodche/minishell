@@ -1,5 +1,4 @@
-# Minishell 🐚  
-*"Tan bonito como shell"*  
+# Minishell 🐚
 
 ## 📖 Overview  
 Minishell is a simplified implementation of a Unix shell, written in C.  
@@ -39,7 +38,7 @@ The goal of the project is to build a functional command-line interpreter that m
 ## 🛠️ Compilation  
 
 - `make` → compiles the project  
-- ./minishel  → executes the minishell 
+- ./minishell  → executes the minishell 
 
 ## 📺 Demo
 
