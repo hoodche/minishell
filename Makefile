@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gtaza-ca <gtaza-ca@student.42.fr>          +#+  +:+       +#+         #
+#    By: igcastil <igcastil@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/24 10:30:44 by igcastil          #+#    #+#              #
-#    Updated: 2024/07/18 21:57:03 by gtaza-ca         ###   ########.fr        #
+#    Updated: 2024/07/22 18:48:17 by igcastil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ SRCDIR = src
 MINISHELL_SRCS = $(addprefix $(SRCDIR)/, $(MINISHELL_SRC))
 MINISHELL_OBJS = $(MINISHELL_SRCS:.c=.o)
 INCLUDE = libft/libft.h inc/minishell.h
-SUPPRSSION_FILE=$(shell realpath -P readline.supp)
+#SUPPRSSION_FILE=$(shell realpath -P readline.supp)
 ifdef DEBUG_MODE
 	CCFLAGS += -DDEBUG_MODE=$(DEBUG_MODE)
 endif
@@ -48,8 +48,8 @@ src/%.o: src/%.c
 	$(CC) $(CCFLAGS) -c -o $@ $<
 
 valgrind: $(NAME)
-	valgrind --suppressions=$(SUPPRSSION_FILE) --track-fds=yes --trace-children=yes  --leak-check=full --show-leak-kinds=all --track-origins=yes ./minishell
-#--track-fds=yes --trace-children=yes 
+	valgrind  --track-fds=yes --trace-children=yes  --leak-check=full --show-leak-kinds=all --track-origins=yes ./minishell
+#--track-fds=yes --trace-children=yes --suppressions=$(SUPPRSSION_FILE)
 clean:
 	(cd libft; make fclean; cd ..)
 	rm -f $(MINISHELL_OBJS)
