@@ -6,7 +6,7 @@
 #    By: igcastil <igcastil@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/24 10:30:44 by igcastil          #+#    #+#              #
-#    Updated: 2024/07/22 18:48:17 by igcastil         ###   ########.fr        #
+#    Updated: 2025/09/06 09:59:14 by igcastil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,13 +39,13 @@ endif
 all: $(NAME)
 
 $(NAME): $(MINISHELL_OBJS) $(INCLUDE) libft/libft.a
-	$(CC) $(CCFLAGS) -g -o minishell $(MINISHELL_OBJS) -L./libft -lft -lreadline
+	$(CC)  -g -o minishell $(MINISHELL_OBJS) -L./libft -lft -lreadline
 
 libft/libft.a:
 	make -C ./libft bonus
 
 src/%.o: src/%.c
-	$(CC) $(CCFLAGS) -c -o $@ $<
+	$(CC)  -c -o $@ $<
 
 valgrind: $(NAME)
 	valgrind  --track-fds=yes --trace-children=yes  --leak-check=full --show-leak-kinds=all --track-origins=yes ./minishell
